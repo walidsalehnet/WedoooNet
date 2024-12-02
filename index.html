@@ -80,14 +80,12 @@
             transform: scale(1.03);
         }
 
-        /* زر دائري في أسفل اليمين */
-        .telegram-btn {
+        /* أزرار دائرية في أسفل اليمين */
+        .social-btn {
             position: fixed;
             bottom: 60px;
-            right: 20px;
             width: 60px;
             height: 60px;
-            background-color: #0088cc;
             border-radius: 50%;
             display: flex;
             justify-content: center;
@@ -98,14 +96,24 @@
             z-index: 1000;
         }
 
-        .telegram-btn:hover {
+        .social-btn:hover {
             transform: scale(1.1);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
         }
 
-        .telegram-btn img {
+        .social-btn img {
             width: 30px;
             height: 30px;
+        }
+
+        .telegram-btn {
+            background-color: #0088cc;
+            right: 80px;
+        }
+
+        .whatsapp-btn {
+            background-color: #25d366;
+            right: 20px;
         }
 
         /* مستطيل الحقوق */
@@ -154,8 +162,13 @@
     </div>
 
     <!-- زر التليجرام -->
-    <a href="https://t.me/wedoonetcallbot" target="_blank" class="telegram-btn">
+    <a href="https://t.me/wedoonetcallbot" target="_blank" class="social-btn telegram-btn">
         <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram Icon">
+    </a>
+
+    <!-- زر الواتساب -->
+    <a href="https://wsend.co/201097891442" target="_blank" class="social-btn whatsapp-btn">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon">
     </a>
 
     <!-- مستطيل الحقوق -->
