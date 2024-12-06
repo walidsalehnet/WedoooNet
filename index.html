@@ -3,189 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedoo Net</title>
+    <title>Wedoo Net - جاري التحديث</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f4f4f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
             text-align: center;
         }
 
         header {
-            background-color: #333;
-            color: #fff;
-            padding: 20px 0;
-            font-size: 1.5rem;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
         }
 
-        .container {
-            margin: 20px auto;
-            max-width: 100%;
+        .robot-image {
+            width: 200px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .update-box {
+            background-color: #ffc107;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .news-ticker {
+            width: 100%;
+            background-color: #e60000;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: bold;
+            overflow: hidden;
+            white-space: nowrap;
+            box-sizing: border-box;
+            padding: 10px 0;
+        }
+
+        .news-ticker span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: ticker 15s linear infinite;
+        }
+
+        @keyframes ticker {
+            from {
+                transform: translateX(100%);
+            }
+            to {
+                transform: translateX(-100%);
+            }
+        }
+
+        .button-container {
+            margin-top: 20px;
         }
 
         .button {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background-color: #eee;
-            padding: 15px 20px;
-            margin: 10px 0;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
             border: none;
-            border-radius: 8px;
+            border-radius: 5px;
             font-size: 1rem;
             font-weight: bold;
             cursor: pointer;
-            transition: 0.3s ease;
-            color: #fff;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .button img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: #fff;
-            padding: 5px;
-        }
-
-        .button.vodafone {
-            background-color: #e60000;
-        }
-
-        .button.orange {
-            background-color: #ff6600;
-        }
-
-        .button.etisalat {
-            background-color: #28a745;
-        }
-
-        .button.we {
-            background-color: #5a189a;
-        }
-
-        .button.buy-lines {
-            background-color: #ffc107;
-            color: #333;
-        }
-
-        .button.buy-liness {
-            background-color: #05f1e6;
+            text-decoration: none;
+            transition: background-color 0.3s;
         }
 
         .button:hover {
-            transform: scale(1.03);
-        }
-        .button.buy-linesss {
-            background-color: #8cb8a0;
-        }
-
-        .button:hover {
-            transform: scale(1.03);
-        }
-
-        /* أزرار دائرية في أسفل اليمين */
-        .social-btn {
-            position: fixed;
-            bottom: 60px;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            z-index: 1000;
-        }
-
-        .social-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-        }
-
-        .social-btn img {
-            width: 30px;
-            height: 30px;
-        }
-
-        .telegram-btn {
-            background-color: #0088cc;
-            right: 80px;
-        }
-
-        .whatsapp-btn {
-            background-color: #25d366;
-            right: 20px;
-        }
-
-        /* مستطيل الحقوق */
-        .footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 10px 0;
-            font-size: 0.9rem;
-            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
-    <header>
-        Wedoo Net
-    </header>
-    <div class="container">
-        <button class="button vodafone" onclick="location.href='index5.html'">
-            <span>فودافون</span>
-            <img src="https://e.top4top.io/p_3255bena16.png" alt="Vodafone">
-        </button>
-        <button class="button orange" onclick="location.href='index6.html'">
-            <span>أورانج</span>
-            <img src="https://d.top4top.io/p_32552iji35.png" alt="Orange">
-        </button>
-        <button class="button etisalat" onclick="location.href='index7.html'">
-            <span>اتصالات</span>
-            <img src="https://b.top4top.io/p_3255lfbs33.png" alt="Etisalat">
-        </button>
-        <button class="button we" onclick="location.href='index8.html'">
-            <span>وي</span>
-            <img src="https://c.top4top.io/p_32553l0tp4.png" alt="We">
-        </button>
-        <button class="button buy-lines" onclick="location.href='index9.html'">
-            <span>شراء خطوط</span>
-            <img src="https://b.top4top.io/p_3255n6kdb2.png" alt="Buy Lines">
-        </button>
-        <button class="button buy-liness" onclick="location.href='index10.html'">
-            <span>هواتف استعمال </span>
-            <img src="https://l.top4top.io/p_3255yhe271.png" alt="Buy Liness">
-        </button>
-        <button class="button buy-linesss" onclick="location.href='index91.html'">
-            <span>خدمات مجانيه </span>
-            <img src="https://e.top4top.io/p_32604wb2p1.png" alt="Buy Linesss">
-        </button>
+    <header>Wedoo Net</header>
+    <img src="https://e.top4top.io/p_32629gwjj1.jpg" alt="Sad Robot" class="robot-image">
+    <div class="update-box">جاري تحديث الموقع عد لاحقًا</div>
+    <div class="news-ticker">
+        <span>تم زيادة الرصيد بنسبة 30٪ وجاري تحديث الأسعار</span>
     </div>
-
-    <!-- زر التليجرام -->
-    <a href="https://t.me/wedoonetcallbot" target="_blank" class="social-btn telegram-btn">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram Icon">
-    </a>
-
-    <!-- زر الواتساب -->
-    <a href="https://wsend.co/201097891442" target="_blank" class="social-btn whatsapp-btn">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon">
-    </a>
-
-    <!-- مستطيل الحقوق -->
-    <div class="footer">
-        جميع الحقوق محفوظة 2025 - وليد أبو صالح
-    </div>
-
 </body>
 </html>
