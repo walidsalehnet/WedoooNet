@@ -30,13 +30,17 @@
 
         .box {
             background-color: #fff;
-            border: 2px solid #e60000;
-            border-radius: 10px;
+            border: 7px solid #e60000;
+            border-radius: 20px; /* تقليل الزوايا قليلاً */
             margin-bottom: 20px;
             padding: 20px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-align: center;
             color: #e60000;
+            position: relative;
+            height: 420px; /* توحيد ارتفاع المستطيلات */
+            width: 100%; /* عرض المستطيل كامل داخل الحاوية */
+            box-sizing: border-box;
         }
 
         .box h2 {
@@ -58,10 +62,37 @@
             font-size: 1rem;
             cursor: pointer;
             transition: 0.3s;
+            position: absolute; /* رفع الزر داخل المستطيل */
+            bottom: 20px; /* رفع الزر عن أسفل المستطيل */
+            left: 50%;
+            transform: translateX(-50%); /* لتوسيط الزر */
         }
 
         .box button:hover {
             background-color: #ff4d4d;
+        }
+
+        /* الأنيميشن حول المستطيل */
+        .box:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 3px solid #e60000; /* الخط الأحمر حول المستطيل */
+            border-radius: 20px;
+            animation: rotateBorder 4s linear infinite; /* أنيميشن تحريك الخط */
+            z-index: -1; /* لضمان بقاء النص فوق الخط المتحرك */
+        }
+
+        @keyframes rotateBorder {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
         }
     </style>
 </head>
@@ -82,78 +113,71 @@
             </ul>
             <button onclick="location.href='index40.html'">اشترك في العرض</button>
         </div>
+
         <!-- مستطيل الباقة -->
         <div class="box">
-            <h2> 10400 فلكس</h2>
-            <p>السعر: 145 جنيه</p>
+            <h2> 13000 فلكس</h2>
+            <p>السعر: 180 جنيه</p>
             <p>المدة: 28 يوم</p>
             <p>الشروط:</p>
             <ul style="list-style: none; padding: 0; margin: 0; text-align: right;">
                 <li>- ميكونش عليك سلف ولا نوته</li>
                 <li>- أن تكون على نظام فلكس أو ريح بالك</li>
             </ul>
-            <button onclick="location.href='index99.html'">اشترك في العرض</button>
+            <button onclick="location.href='index41.html'">اشترك في العرض</button>
         </div>
-         <!-- مستطيل الباقة -->
-         <div class="box">
-          <h2> 13000 فلكس</h2>
-          <p>السعر: 180 جنيه</p>
-          <p>المدة: 28 يوم</p>
-          <p>الشروط:</p>
-          <ul style="list-style: none; padding: 0; margin: 0; text-align: right;">
-              <li>- ميكونش عليك سلف ولا نوته</li>
-              <li>- أن تكون على نظام فلكس أو ريح بالك</li>
-          </ul>
-          <button onclick="location.href='index41.html'">اشترك في العرض</button>
-      </div>
-       <!-- مستطيل الباقة -->
-       <div class="box">
-        <h2> 26000 فلكس</h2>
-        <p>السعر: 255 جنيه</p>
-        <p>المدة: 28 يوم</p>
-        <p>الشروط:</p>
-        <ul style="list-style: none; padding: 0; margin: 0; text-align: right;">
-            <li>- ميكونش عليك سلف ولا نوته</li>
-            <li>- أن تكون على نظام فلكس أو ريح بالك</li>
-        </ul>
-        <button onclick="location.href='index42.html'">اشترك في العرض</button>
-    </div>
-     <!-- مستطيل الباقة -->
-     <div class="box">
-      <h2> 40000 فلكس</h2>
-      <p>السعر: 310 جنيه</p>
-      <p>المدة: 28 يوم</p>
-      <p>الشروط:</p>
-      <ul style="list-style: none; padding: 0; margin: 0; text-align: right;">
-          <li>- ميكونش عليك سلف ولا نوته</li>
-          <li>- أن تكون على نظام فلكس أو ريح بالك</li>
-      </ul>
-      <button onclick="location.href='index43.html'">اشترك في العرض</button>
-  </div>
-   <!-- مستطيل الباقة -->
-   <div class="box">
-    <h2> 45000 فلكس</h2>
-    <p>السعر: 330 جنيه</p>
-    <p>المدة: 28 يوم</p>
-    <p>الشروط:</p>
-    <ul style="list-style: none; padding: 0; margin: 0; text-align: right;">
-        <li>- ميكونش عليك سلف ولا نوته</li>
-        <li>- أن تكون على نظام فلكس أو ريح بالك</li>
-    </ul>
-    <button onclick="location.href='index44.html'">اشترك في العرض</button>
-</div>
- <!-- مستطيل الباقة -->
- <div class="box">
-  <h2> 50000 فلكس</h2>
-  <p>السعر: 350 جنيه</p>
-  <p>المدة: 28 يوم</p>
-  <p>الشروط:</p>
-  <ul style="list-style: none; padding: 0; margin: 0; text-align: right;">
-      <li>- ميكونش عليك سلف ولا نوته</li>
-      <li>- أن تكون على نظام فلكس أو ريح بالك</li>
-  </ul>
-  <button onclick="location.href='index45.html'">اشترك في العرض</button>
-</div>
+
+        <!-- مستطيل الباقة -->
+        <div class="box">
+            <h2> 26000 فلكس</h2>
+            <p>السعر: 265 جنيه</p>
+            <p>المدة: 28 يوم</p>
+            <p>الشروط:</p>
+            <ul style="list-style: none; padding: 0; margin: 0; text-align: right;">
+                <li>- ميكونش عليك سلف ولا نوته</li>
+                <li>- أن تكون على نظام فلكس أو ريح بالك</li>
+            </ul>
+            <button onclick="location.href='index42.html'">اشترك في العرض</button>
+        </div>
+
+        <!-- مستطيل الباقة -->
+        <div class="box">
+            <h2> 40000 فلكس</h2>
+            <p>السعر: 315 جنيه</p>
+            <p>المدة: 28 يوم</p>
+            <p>الشروط:</p>
+            <ul style="list-style: none; padding: 0; margin: 0; text-align: right;">
+                <li>- ميكونش عليك سلف ولا نوته</li>
+                <li>- أن تكون على نظام فلكس أو ريح بالك</li>
+            </ul>
+            <button onclick="location.href='index43.html'">اشترك في العرض</button>
+        </div>
+
+        <!-- مستطيل الباقة -->
+        <div class="box">
+            <h2> 45000 فلكس</h2>
+            <p>السعر: 330 جنيه</p>
+            <p>المدة: 28 يوم</p>
+            <p>الشروط:</p>
+            <ul style="list-style: none; padding: 0; margin: 0; text-align: right;">
+                <li>- ميكونش عليك سلف ولا نوته</li>
+                <li>- أن تكون على نظام فلكس أو ريح بالك</li>
+            </ul>
+            <button onclick="location.href='index44.html'">اشترك في العرض</button>
+        </div>
+        
+        <!-- مستطيل الباقة -->
+        <div class="box">
+            <h2> 50000 فلكس</h2>
+            <p>السعر: 350 جنيه</p>
+            <p>المدة: 28 يوم</p>
+            <p>الشروط:</p>
+            <ul style="list-style: none; padding: 0; margin: 0; text-align: right;">
+                <li>- ميكونش عليك سلف ولا نوته</li>
+                <li>- أن تكون على نظام فلكس أو ريح بالك</li>
+            </ul>
+            <button onclick="location.href='index45.html'">اشترك في العرض</button>
+        </div>
     </div>
 </body>
 </html>
