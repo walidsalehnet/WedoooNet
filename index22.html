@@ -30,13 +30,17 @@
 
         .box {
             background-color: #fff;
-            border: 2px solid #e60000;
-            border-radius: 10px;
+            border: 7px solid #e60000;
+            border-radius: 20px; /* تقليل الزوايا قليلاً */
             margin-bottom: 20px;
             padding: 20px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-align: center;
             color: #e60000;
+            position: relative;
+            height: 350px; /* توحيد ارتفاع المستطيلات */
+            width: 100%; /* عرض المستطيل كامل داخل الحاوية */
+            box-sizing: border-box;
         }
 
         .box h2 {
@@ -58,10 +62,37 @@
             font-size: 1rem;
             cursor: pointer;
             transition: 0.3s;
+            position: absolute; /* رفع الزر داخل المستطيل */
+            bottom: 20px; /* رفع الزر عن أسفل المستطيل */
+            left: 50%;
+            transform: translateX(-50%); /* لتوسيط الزر */
         }
 
         .box button:hover {
             background-color: #ff4d4d;
+        }
+
+        /* الأنيميشن حول المستطيل */
+        .box:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 3px solid #e60000; /* الخط الأحمر حول المستطيل */
+            border-radius: 20px;
+            animation: rotateBorder 4s linear infinite; /* أنيميشن تحريك الخط */
+            z-index: -1; /* لضمان بقاء النص فوق الخط المتحرك */
+        }
+
+        @keyframes rotateBorder {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
         }
     </style>
 </head>
@@ -70,7 +101,7 @@
         Wedoo Net
     </header>
     <div class="container">
-        <!-- مستطيل الباقة -->
+                    <!-- مستطيل الباقة -->
         <div class="box">
             <h2>45 جيجا نت</h2>
             <p>السعر: 🥶55  جنيه</p>
