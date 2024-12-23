@@ -18,6 +18,39 @@
             color: #fff;
             padding: 20px 0;
             font-size: 1.5rem;
+            position: relative;
+        }
+
+        /* تصميم بوكس الهدايا */
+        .gift-box {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            width:-100px;
+            height:-100px;
+            background: linear-gradient(135deg, #ff0066, #ffcc00);
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: pulse 1.5s infinite;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .gift-box img {
+            width: 60px;
+            height: 60px;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
         }
 
         .container {
@@ -76,9 +109,6 @@
             background-color: #05f1e6;
         }
 
-        .button:hover {
-            transform: scale(1.03);
-        }
         .button.buy-linesss {
             background-color: #8cb8a0;
         }
@@ -140,6 +170,10 @@
 <body>
     <header>
         Wedoo Net
+        <!-- بوكس الهدايا -->
+        <div class="gift-box" onclick="location.href='win.html'">
+            <img src="https://b.top4top.io/p_3279d3aw50.png" alt="Gift Box">
+        </div>
     </header>
     <div class="container">
         <button class="button vodafone" onclick="location.href='index5.html'">
