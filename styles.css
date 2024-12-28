@@ -1,0 +1,327 @@
+
+body {
+  font-family: Cairo, sans-serif;
+  background-color: #adb3b8; /* لون خلفية فاتح للصفحة */
+  color: #343a40; /* لون نص أساسي داكن */
+}
+
+@keyframes slideIn {
+  from {
+      transform: translateY(-50px);
+      opacity: 0;
+  }
+  to {
+      transform: translateY(0);
+      opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
+/* تأثير تغيير اللون */
+@keyframes colorChange {
+  0% {
+      color: #007bff;
+  }
+  50% {
+      color: #0056b3;
+  }
+  100% {
+      color: #007bff;
+  }
+}
+
+/* تنسيق الحاوية */
+/* تصميم الدائرة لصورة البروفايل */
+.profile-image {
+  width: 200px; /* حجم الدائرة */
+  height: 200px; /* نفس حجم الدائرة */
+  border-radius: 50%; /* جعل الصورة دائرية */
+  overflow: hidden; /* منع تجاوز الصورة للدائرة */
+  margin: 0 auto 20px auto; /* توسيط الدائرة وإضافة مسافة أسفلها */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* ظل للصورة */
+}
+
+.profile-image img {
+  width: 100%; /* عرض كامل للصورة */
+  height: 100%; /* ارتفاع كامل للصورة */
+  object-fit: cover; /* تغطية كاملة للصورة داخل الدائرة */
+}
+
+/* تنسيق الحاوية */
+.container {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  max-width: 400px;
+  width: 90%;
+  margin: 20px auto;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  animation: slideIn 0.5s ease forwards;
+}
+
+
+.profile-image img {
+  width: 100%; /* عرض كامل للصورة */
+  height: 100%; /* ارتفاع كامل للصورة */
+  object-fit: cover; /* تغطية كاملة للصورة داخل الدائرة */
+}
+
+.container {
+  background: rgba(255, 250, 250, 0.95);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  max-width: 400px;
+  width: 90%;
+  margin: 20px auto;
+  text-align: center;
+  transition: transform 0.3s ease-in-out, background 0.3s ease-in-out;
+  backdrop-filter: blur(10px);
+  animation: slideIn 0.5s ease forwards;
+}
+
+.container:hover {
+  transform: scale(1.03);
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); /* زيادة الظل عند التحويم */
+  border: 1px solid #28a745; /* إضافة إطار بلون أخضر عند التحويم */
+}
+
+/* تأثير تغيير العنوان */
+h1 {
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  animation: colorChange 3s infinite;
+}
+
+/* تنسيق حقول الإدخال */
+input[type="text"], input[type="name"], input[type="phone"], input[type="password"] {
+  width: 100%;
+  padding: 14px;
+  margin: 12px 0;
+  border: 1px solid #15f305;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+input[type="text"]:focus, input[type="name"]:focus, input[type="phone"]:focus, input[type="password"]:focus {
+  border-color: #28db09;
+  outline: none;
+  background: rgba(255, 255, 255, 1);
+  transform: scale(1.02);
+}
+/* تنسيق حقول الإدخال */
+input[type="text"], input[type="name"], input[type="phone"], input[type="password"] {
+  width: 100%;
+  padding: 14px;
+  margin: 12px 0;
+  border: 1px solid #15f305;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="phone"]:focus, input[type="password"]:focus {
+  border-color: #28db09;
+  outline: none;
+  background: rgba(255, 255, 255, 1);
+  transform: scale(1.02);
+}
+/* تنسيق الأزرار */
+button {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #28a745, #218838);
+  border: none;
+  border-radius: 25px;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+  background: linear-gradient(135deg, #218838, #28a745);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-3px);
+}
+
+/* تنسيق الفقرات والروابط */
+p {
+  margin: 20px 0;
+  font-size: 16px;
+  color: #666;
+  line-height: 1.6;
+  transition: color 0.3s ease;
+  animation: fadeIn 0.5s ease forwards;
+}
+
+p:hover {
+  color: #333;
+}
+
+a {
+  color: #28a745;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #218838;
+  text-decoration: underline; /* خط تحت الرابط عند التحويم */
+}
+
+/* توافق الشاشات */
+@media (max-width: 768px) {
+  .container {
+      width: 80%;
+  }
+  h1 {
+      font-size: 24px;
+  }
+  button {
+      font-size: 16px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  .container {
+      width: 70%;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+      width: 50%;
+  }
+}
+
+/* استايل الرسالة المنبثقة */
+.message-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  max-width: 300px;
+  width: 90%;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  animation: slideInMessage 0.5s ease-out forwards, fadeOutMessage 3s 2.5s ease-out forwards;
+}
+
+@keyframes slideInMessage {
+  from {
+      transform: translate(-50%, -70%);
+      opacity: 0;
+      visibility: hidden;
+  }
+  to {
+      transform: translate(-50%, -50%);
+      opacity: 1;
+      visibility: visible;
+  }
+}
+
+@keyframes fadeOutMessage {
+  to {
+      opacity: 0;
+      visibility: hidden;
+  }
+}
+
+.close-btn {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  cursor: pointer;
+  color: #777;
+  font-size: 20px;
+  transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+  color: #333;
+}
+
+.button-container {
+  margin-top: 20px;
+}
+
+.button-container button {
+  background: linear-gradient(135deg, #28a745, #218838);
+  border: none;
+  border-radius: 25px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-right: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.button-container button:hover {
+  background: linear-gradient(135deg, #218838, #28a745);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* تطبيق تأثير fade-in على الصور والنصوص */
+img, p {
+  animation: fadeIn 0.5s ease forwards;
+}
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.button-container button {
+  background: linear-gradient(135deg, #28a745, #218838); /* اللون الأخضر */
+  border: none;
+  border-radius: 25px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 40px; /* زيادة العرض لتتوسط الزر بشكل أفضل */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 10px 0; /* تباعد بين الأزرار */
+  width: 100%; /* لجعل الأزرار بعرض كامل الحاوية */
+  max-width: 300px; /* أقصى عرض للزر */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.button-container button:hover {
+  background: linear-gradient(135deg, #218838, #28a745); /* تبديل اللون عند التحويم */
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
