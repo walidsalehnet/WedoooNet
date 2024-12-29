@@ -1,14 +1,5 @@
-
-<script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
     apiKey: "AIzaSyDhd3l_1q-gNEeihQQY-5fpRvV9vCZgMYA",
     authDomain: "wedoo7.firebaseapp.com",
     projectId: "wedoo7",
@@ -18,73 +9,62 @@
     measurementId: "G-Y3TLQ3CKYJ"
   };
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-</script>
+// Sign Up function
+function signUp() {
+    const name = document.getElementById("name").value; // الحصول على الاسم
+    const phone = document.getElementById("phone").value; // الحصول على رقم الهاتف
+    const password = document.getElementById("password").value;
+
+    if (!name || !phone || !password) {
+        Swal.fire("Error", "Please fill out all fields!", "error");
+        return;
+    }
+
+    // تسجيل الحساب باستخدام الهاتف
+    firebase.auth().createUserWithEmailAndPassword(phone + "@example.com", password)
+        .then((userCredential) => {
+            const user = userCredential.user;
+            user.updateProfile({
+                displayName: name // حفظ الاسم كـ displayName
+            }).then(() => {
+                Swal.fire("Success", "Account created successfully!", "success");
+            });
+        })
+        .catch((error) => {
+            Swal.fire("Error", error.message, "error");
+        });
+}
+
 // Login function
 function login() {
     const phone = document.getElementById('phone').value;
     const password = document.getElementById('password').value;
-    firebase.auth().signInWithEmailAndPassword(,phone,password)
-        .then((phoneCredential) => {
+    firebase.auth().signInWithEmailAndPassword(phone + "@example.com", password)
+        .then((userCredential) => {
             Swal.fire({
-                title: 'تم لنشاء حسابك بنجاح  ',
+                title: 'Welcome!',
                 icon: 'success',
-                confirmButtonText: 'استمرار'
+                confirmButtonText: 'Continue'
             }).then(() => {
                 window.location.href = 'profile2.html';
             });
         })
         .catch((error) => {
             Swal.fire({
-                title: 'خطأ!',
+                title: 'Error!',
                 text: error.message,
                 icon: 'error',
-                confirmButtonText: 'حسناً'
-            });
-        });
-}
-
-// Sign Up function
-function signUp() {
-    const name = document.getElementById('name').value;
-    const phone = document.getElementById('phone').value;
-    const password = document.getElementById('password').value;
-    firebase.auth().createUserWithEmailAndPassword(, phone, name, password)
-        .then((phoneCredential) => {
-            // Update display name after sign up
-            const phone = userCredential.phone;
-            const phone = document.getElementById('phone').value; // Assuming you have an input field for phone
-            return phone.updateProfile({
-                displayName: phone
-            });
-        })
-        .then(() => {
-            Swal.fire({
-                title: 'تم انشاء حسابك بنجاح   ',
-                icon: 'success',
-                confirmButtonText: 'استمرار'
-            }).then(() => {
-                window.location.href = 'profile2.html';
-            });
-        })
-        .catch((error) => {
-            Swal.fire({
-                title: 'خطأ!',
-                text: error.message,
-                icon: 'error',
-                confirmButtonText: 'حسناً'
+                confirmButtonText: 'OK'
             });
         });
 }
 
 // Profile and Logout function
-firebase.auth().onAuthStateChanged((phone) => {
-    if (phone) {
-        // Display phone and passwoed
-        document.getElementById('phone-phone').textContent = phone.displayName || 'Unknown';
-        document.getElementById('phone-phone').textContent = phone.phone;
+firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+        // Display username and email
+        document.getElementById('user-username').textContent = user.displayName || 'Unknown';
+        document.getElementById('user-email').textContent = user.email;
     } else {
         // If no user is signed in, redirect to login page
         if (window.location.pathname.includes('profile2.html')) {
@@ -99,10 +79,10 @@ function logout() {
         window.location.href = 'login.html';
     }).catch((error) => {
         Swal.fire({
-            title: 'خطأ!',
+            title: 'Error!',
             text: error.message,
             icon: 'error',
-            confirmButtonText: 'حسناً'
+            confirmButtonText: 'OK'
         });
     });
 }
