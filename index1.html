@@ -164,63 +164,72 @@
         }
     </style>
     <script>
-        function setCookie(name, value, minutes) {
-            const date = new Date();
-            date.setTime(date.getTime() + (minutes * 60 * 1000));
-            const expires = "expires=" + date.toUTCString();
-            document.cookie = name + "=" + value + ";" + expires + ";path=/";
-        }
+    function setCookie(name, value, minutes) {
+        const date = new Date();
+        date.setTime(date.getTime() + (minutes * 60 * 1000));
+        const expires = "expires=" + date.toUTCString();
+        document.cookie = name + "=" + value + ";" + expires + ";path=/";
+    }
 
-        function getCookie(name) {
-            const cookies = document.cookie.split(';');
-            for (let i = 0; i < cookies.length; i++) {
-                const cookie = cookies[i].trim();
-                if (cookie.startsWith(name + "=")) {
-                    return cookie.substring((name + "=").length);
-                }
-            }
-            return null;
-        }
-
-        function deleteCookie(name) {
-            document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-        }
-
-        function checkSession() {
-            const loginPage = 'login.html';
-            const currentTime = new Date().getTime();
-            const sessionStartLocalStorage = localStorage.getItem('sessionStart');
-            const sessionStartCookie = getCookie('sessionStart');
-
-            if (!sessionStartLocalStorage || !sessionStartCookie) {
-                localStorage.setItem('sessionStart', currentTime);
-                setCookie('sessionStart', currentTime, 3);
-            } else {
-                if (sessionStartLocalStorage !== sessionStartCookie) {
-                    resetSession();
-                    return;
-                }
-                const elapsed = currentTime - parseInt(sessionStartLocalStorage);
-                if (elapsed > 3 * 60 * 1000) {
-                    resetSession();
-                    window.location.href = loginPage;
-                }
+    function getCookie(name) {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.startsWith(name + "=")) {
+                return cookie.substring((name + "=").length);
             }
         }
+        return null;
+    }
 
-        function resetSession() {
-            localStorage.removeItem('sessionStart');
-            deleteCookie('sessionStart');
+    function deleteCookie(name) {
+        document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    }
+
+    function checkSession() {
+        const loginPage = 'login.html'; // صفحة تسجيل الدخول
+        const currentTime = new Date().getTime();
+        const sessionStartLocalStorage = localStorage.getItem('sessionStart');
+        const sessionStartCookie = getCookie('sessionStart');
+
+        // التحقق من وجود الجلسة
+        if (!sessionStartLocalStorage || !sessionStartCookie) {
+            console.log("لا توجد جلسة: يتم إنشاء جلسة جديدة.");
+            localStorage.setItem('sessionStart', currentTime);
+            setCookie('sessionStart', currentTime, 3);
+        } else {
+            if (sessionStartLocalStorage !== sessionStartCookie) {
+                console.log("الجلسة غير متطابقة. إعادة ضبط الجلسة.");
+                resetSession();
+                window.location.href = loginPage;
+                return;
+            }
+
+            const elapsed = currentTime - parseInt(sessionStartLocalStorage);
+            if (elapsed > 3 * 60 * 1000) { // 3 دقائق
+                console.log("الجلسة انتهت. إعادة توجيه إلى صفحة تسجيل الدخول.");
+                resetSession();
+                window.location.href = loginPage;
+            }
         }
+    }
 
-        window.onload = () => {
-            checkSession();
-        };
+    function resetSession() {
+        localStorage.removeItem('sessionStart');
+        deleteCookie('sessionStart');
+    }
 
-        window.onbeforeunload = () => {
-            resetSession();
-        };
-    </script>
+    window.onload = () => {
+        console.log("الصفحة محملة. التحقق من الجلسة...");
+        checkSession();
+    };
+
+    window.onbeforeunload = () => {
+        console.log("المستخدم يغلق الصفحة. حذف الجلسة.");
+        resetSession();
+    };
+</script>
+
 </head>
 <body>
     <header>
