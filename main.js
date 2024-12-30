@@ -42,7 +42,7 @@ function signUp() {
     const phoneNumber = document.getElementById('phone-number').value;
     const password = document.getElementById('password').value;
 
-    firebase.auth().createUserWithEmailAndPassword(`${phoneNumber}.auth`, password)
+    firebase.auth().createUserWithEmailAndPassword(`${phoneNumber}@phone.auth`, password)
         .then((userCredential) => {
             const user = userCredential.user;
             return user.updateProfile({ displayName: fullName });
