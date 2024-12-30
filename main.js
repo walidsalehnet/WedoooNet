@@ -24,7 +24,7 @@ function login() {
                 icon: 'تم ',
                 confirmButtonText: 'استمرار'
             }).then(() => {
-                window.location.href = 'profile2.html';
+                window.location.href = 'index1.html';
             });
         })
         .catch((error) => {
@@ -53,7 +53,7 @@ function signUp() {
                 icon: 'تم بنجاح ',
                 confirmButtonText: 'استمرار'
             }).then(() => {
-                window.location.href = 'profile2.html';
+                window.location.href = 'index1.html';
             });
         })
         .catch((error) => {
