@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
+    <title> انشاء حساب</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
@@ -11,15 +11,12 @@
 </head>
 <body>
     <div class="container">
-        <h1>Sign Up</h1>
-        <input type="text" id="name" placeholder="Your Name"> <!-- الحقل الجديد -->
-        <input type="text" id="phone" placeholder="Phone Number"> <!-- حقل الهاتف -->
-        <input type="password" id="password" placeholder="Password">
-        <button onclick="signUp()">Sign Up</button>
-        <p>Already have an account? <a href="login.html">Login</a></p>
-        <h5>3almnecouers</h5>
-        <script type="module" src="https://cdn.jsdelivr.net/npm/ldrs/dist/auto/helix.js"></script>
-        <l-helix size="45" speed="2.5" color="black"></l-helix>
+        <h1> انشاء حساب</h1>
+        <input type="text" id="full-name" placeholder=" اسمك بالكامل">
+        <input type="text" id="phone-number" placeholder=" رقم الواتساب">
+        <input type="password" id="password" placeholder="كلمة السر">
+        <button onclick="signUp()"> انشاء حساب</button>
+        <p>انا عندي حساب ي ويدوو 😇 ؟ <a href="login.html">تسجيل</a></p>
     </div>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
