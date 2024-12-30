@@ -21,13 +21,12 @@
             position: relative;
         }
 
-        /* تصميم بوكس الهدايا */
         .gift-box {
             position: absolute;
             top: 10px;
             right: 20px;
-            width:-100px;
-            height:-100px;
+            width: 100px;
+            height: 100px;
             background: linear-gradient(135deg, #ff0066, #ffcc00);
             border-radius: 15px;
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
@@ -117,7 +116,6 @@
             transform: scale(1.03);
         }
 
-        /* أزرار دائرية في أسفل اليمين */
         .social-btn {
             position: fixed;
             bottom: 60px;
@@ -153,7 +151,6 @@
             right: 20px;
         }
 
-        /* مستطيل الحقوق */
         .footer {
             position: fixed;
             bottom: 0;
@@ -166,11 +163,68 @@
             box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
         }
     </style>
+    <script>
+        function setCookie(name, value, minutes) {
+            const date = new Date();
+            date.setTime(date.getTime() + (minutes * 60 * 1000));
+            const expires = "expires=" + date.toUTCString();
+            document.cookie = name + "=" + value + ";" + expires + ";path=/";
+        }
+
+        function getCookie(name) {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.startsWith(name + "=")) {
+                    return cookie.substring((name + "=").length);
+                }
+            }
+            return null;
+        }
+
+        function deleteCookie(name) {
+            document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        }
+
+        function checkSession() {
+            const loginPage = 'login.html';
+            const currentTime = new Date().getTime();
+            const sessionStartLocalStorage = localStorage.getItem('sessionStart');
+            const sessionStartCookie = getCookie('sessionStart');
+
+            if (!sessionStartLocalStorage || !sessionStartCookie) {
+                localStorage.setItem('sessionStart', currentTime);
+                setCookie('sessionStart', currentTime, 3);
+            } else {
+                if (sessionStartLocalStorage !== sessionStartCookie) {
+                    resetSession();
+                    return;
+                }
+                const elapsed = currentTime - parseInt(sessionStartLocalStorage);
+                if (elapsed > 3 * 60 * 1000) {
+                    resetSession();
+                    window.location.href = loginPage;
+                }
+            }
+        }
+
+        function resetSession() {
+            localStorage.removeItem('sessionStart');
+            deleteCookie('sessionStart');
+        }
+
+        window.onload = () => {
+            checkSession();
+        };
+
+        window.onbeforeunload = () => {
+            resetSession();
+        };
+    </script>
 </head>
 <body>
     <header>
         Wedoo Net
-        <!-- بوكس الهدايا -->
         <div class="gift-box" onclick="location.href='win.html'">
             <img src="https://b.top4top.io/p_3279d3aw50.png" alt="Gift Box">
         </div>
@@ -197,30 +251,25 @@
             <img src="https://b.top4top.io/p_3255n6kdb2.png" alt="Buy Lines">
         </button>
         <button class="button buy-liness" onclick="location.href='index10.html'">
-            <span>هواتف استعمال </span>
+            <span>هواتف استعمال</span>
             <img src="https://l.top4top.io/p_3255yhe271.png" alt="Buy Liness">
         </button>
         <button class="button buy-linesss" onclick="location.href='index91.html'">
-            <span>خدمات مجانيه </span>
+            <span>خدمات مجانيه</span>
             <img src="https://e.top4top.io/p_32604wb2p1.png" alt="Buy Linesss">
         </button>
-
     </div>
 
-    <!-- زر التليجرام -->
     <a href="https://t.me/wedoonetcallbot" target="_blank" class="social-btn telegram-btn">
         <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram Icon">
     </a>
 
-    <!-- زر الواتساب -->
     <a href="https://wsend.co/201097891442" target="_blank" class="social-btn whatsapp-btn">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon">
     </a>
 
-    <!-- مستطيل الحقوق -->
     <div class="footer">
         جميع الحقوق محفوظة 2025 - وليد أبو صالح
     </div>
-
 </body>
 </html>
